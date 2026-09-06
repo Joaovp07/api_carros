@@ -1,0 +1,19 @@
+
+server:
+ port: 8090
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/carro?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root  # Geralmente root
+    password: admin    # A senha do seu MySQL local
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true # Adicione isso para ver o que ele está tentando fazer no banco
+
+application:
+  name: api_carros
