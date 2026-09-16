@@ -1,0 +1,8 @@
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/ApiCarrosApplication.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/controller/CarroController.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/model/entity/Carro.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/model/entity/Usuario.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/model/repository/CarroRepository.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/model/repository/UsuarioRepository.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/service/CarroService.java
+/home/jon/Workspace/api_carros/src/main/java/com/example/api_carros/service/UsuarioService.java

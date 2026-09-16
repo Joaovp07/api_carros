@@ -1,0 +1,7 @@
+com/example/api_carros/ApiCarrosApplication.class
+com/example/api_carros/model/repository/CarroRepository.class
+com/example/api_carros/controller/CarroController.class
+com/example/api_carros/model/entity/Usuario.class
+com/example/api_carros/service/CarroService.class
+com/example/api_carros/model/repository/UsuarioRepository.class
+com/example/api_carros/model/entity/Carro.class
