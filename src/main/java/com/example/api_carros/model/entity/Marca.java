@@ -19,11 +19,6 @@ import java.util.List;
 @Entity
 @Table(name= "Marca")
 @JsonAutoDetect
-@JsonIdentityInfo(
-        scope = Marca.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id" // É necessário indicar qual campo é o ID para o Jackson
-)
 public class Marca {
 
     @Id

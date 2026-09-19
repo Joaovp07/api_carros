@@ -39,13 +39,8 @@ private final UsuarioRepository usuarioRepository;
 
 
     public void save(Usuario usuario ){
-      Usuario usuario1 = new Usuario();
       usuario.setNome(usuario.getNome());
       usuario.setEmail(usuario.getEmail());
-      usuario.setId(usuario.getId());
-      usuario.setCarros(usuario.getCarros());
-
-      List<Carro> carros = new ArrayList<>();
 
       usuarioRepository.save(usuario);
 

@@ -1,5 +1,6 @@
 package com.example.api_carros.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators; // Ajustado (plural)
 import jakarta.persistence.*;
@@ -17,11 +18,7 @@ import java.util.List; // Import necessário para listas
 @NoArgsConstructor
 @Table(name = "usuario")
 @ToString
-@JsonIdentityInfo(
-        scope = Usuario.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id" // É necessário indicar qual campo é o ID para o Jackson
-)
+@JsonAutoDetect
 public class Usuario {
 
     @Id
