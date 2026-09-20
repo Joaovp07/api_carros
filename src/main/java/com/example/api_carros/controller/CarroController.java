@@ -37,9 +37,15 @@ public class CarroController {
 @PostMapping
 
     public ResponseEntity<String>save (@RequestBody Carro carro){
-        String mensagem = "Carro criado com sucesso" + carro.getNome();
-        this.carroService.save(carro);
-        return ResponseEntity.ok(mensagem);
+    if (carro.getNome() == null || carro.getNome().trim().isEmpty()) {
+            String mensagem = "Não pode criar o carro sem nome";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagem);
+        }else {
+            String mensagem = "Carro criado com sucesso" + carro.getNome();
+            this.carroService.save(carro);
+            return ResponseEntity.ok(mensagem);
+
+        }
     }
 
     @GetMapping("/{id}")
@@ -56,12 +62,21 @@ public class CarroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> update(@Validated @RequestBody Carro carro, @PathVariable Long id){
+    public ResponseEntity<String> update(@Validated @RequestBody Carro carro, @PathVariable Long id) {
+        try {
 
-        this.carroService.update(carro);
-        String mensagem = "Cliente editado com sucesso!Seu id é:" + id;
+            if (carro.getId() == null) {
+                this.carroService.update(carro);
+                String mensagem = "Carro editado com sucesso!Seu id é:" + id;
 
-        return ResponseEntity.ok(mensagem);
+                return ResponseEntity.ok(mensagem);
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("ID não encontrado!!!");
+        }
+        return null;
     }
 
 
@@ -70,11 +85,11 @@ public class CarroController {
         if (id != null) {
 
             this.carroService.delete(id);
-            String mensagem = "Cliente deletado com sucesso!Seu id é:" +id;
+            String mensagem = "Carro deletado com sucesso!Seu id é:" +id;
 
             return ResponseEntity.ok().body(mensagem);
         }else{
-            String mensagem = "Cliente com ID" + id + "não pode ser excluido.";
+            String mensagem = "Carro com ID" + id + "não pode ser excluido.";
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagem);
         }
     }

@@ -25,7 +25,7 @@ public class Marca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome",length = 45)
     private String nome;
 
     @OneToMany(mappedBy = "marca", fetch = FetchType.EAGER)

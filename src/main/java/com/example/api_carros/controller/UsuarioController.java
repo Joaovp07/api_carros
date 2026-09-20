@@ -39,9 +39,15 @@ import java.util.List;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String>save (@RequestBody Usuario usuario){
-        String mensagem = "Carro criado com sucesso"  + usuario.getNome();
-        this.usuarioService.save(usuario);
-        return ResponseEntity.ok(mensagem);
+        if (usuario.getNome() == null ||usuario.getNome().trim().isEmpty()) {
+            String mensagem = "Não pode criar o usuario sem nome";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagem);
+        }else {
+            String mensagem = "Usuario criado com sucesso" + usuario.getNome();
+            this.usuarioService.save(usuario);
+            return ResponseEntity.ok(mensagem);
+
+        }
     }
 
     @GetMapping("/{id}")
@@ -59,9 +65,20 @@ import java.util.List;
 
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@Validated @RequestBody Usuario usuario, @PathVariable Long id){
-        this.usuarioService.update(usuario);
-        String mensagem = "Cliente editado com sucesso!Seu id é:" + id;
-        return ResponseEntity.ok(mensagem);
+        try {
+
+            if (usuario.getId() == null) {
+                this.usuarioService.update(usuario);
+                String mensagem = "Usuario editado com sucesso!Seu id é:" + id;
+
+                return ResponseEntity.ok(mensagem);
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("ID não encontrado!!!");
+        }
+        return null;
     }
 
 

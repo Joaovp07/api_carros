@@ -18,10 +18,10 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 45)
     private String nome;
 
-    @Column(name ="modelo")
+    @Column(name ="modelo", length = 45)
     private String modelo;
 
     @ManyToOne

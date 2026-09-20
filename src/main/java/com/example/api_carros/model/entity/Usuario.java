@@ -25,10 +25,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Chave primária ideal para IDENTITY
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 45)
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 256)
     private String email;
 
     // Se é OneToMany (Um para Muitos), deve ser uma List ou Set de Carros

@@ -32,9 +32,15 @@ public class MarcaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String>save (@RequestBody Marca marca){
-        String mensagem = "Salvo com sucesso";
-        this.marcaService.save(marca);
-        return ResponseEntity.ok(mensagem);
+        if (marca.getNome() == null || marca.getNome().trim().isEmpty()) {
+            String mensagem = "Não pode criar o marca sem nome";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagem);
+        }else {
+            String mensagem = "Marca criado com sucesso" + marca.getNome();
+            this.marcaService.save(marca);
+            return ResponseEntity.ok(mensagem);
+
+        }
     }
 
     @GetMapping("/{id}")
@@ -51,9 +57,20 @@ public class MarcaController {
 
     @PutMapping("/{id}")
     public  ResponseEntity<String> update(@Validated @RequestBody Marca marca, @PathVariable Long id){
-        this.marcaService.update(marca);
-        String mensagem = "Marca editada com sucesso!Seu id é" +id;
-        return ResponseEntity.ok(mensagem);
+        try {
+
+            if (marca.getId() == null) {
+                this.marcaService.update(marca);
+                String mensagem = "Marca editado com sucesso!Seu id é:" + id;
+
+                return ResponseEntity.ok(mensagem);
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("ID não encontrado!!!");
+        }
+        return null;
     }
 
     @DeleteMapping("/{id}")
