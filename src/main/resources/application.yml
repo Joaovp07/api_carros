@@ -15,5 +15,7 @@ spring:
       ddl-auto: update
     show-sql: true # Adicione isso para ver o que ele está tentando fazer no banco
 
-application:
+application:jackson:
+  mapper:
+    allow-coercion-of-scalars: false
   name: api_carros

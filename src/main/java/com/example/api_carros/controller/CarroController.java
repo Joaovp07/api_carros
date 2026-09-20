@@ -36,7 +36,7 @@ public class CarroController {
     }
 @PostMapping
 
-    public ResponseEntity<String>save (@RequestBody Carro carro){
+    public ResponseEntity<String>save (@Validated @RequestBody Carro carro){
     if (carro.getNome() == null || carro.getNome().trim().isEmpty()) {
             String mensagem = "Não pode criar o carro sem nome";
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mensagem);

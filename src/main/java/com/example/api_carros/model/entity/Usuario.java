@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators; // Ajustado (plural)
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Usuario {
     private Long id; // Chave primária ideal para IDENTITY
 
     @Column(name = "nome", length = 45)
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "O nome do carro não pode conter números ou caracteres especiais")
     private String nome;
 
     @Column(name = "email", length = 256)

@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.validation.constraints.Pattern;
+import tools.jackson.databind.annotation.JsonDeserialize;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,9 +22,11 @@ public class Carro {
     private Long id;
 
     @Column(name = "nome", length = 45)
+    @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "O nome do carro não pode conter números ou caracteres especiais")
     private String nome;
 
     @Column(name ="modelo", length = 45)
+    @Pattern (regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "O nome do carro não pode conter números ou caracteres especiais")
     private String modelo;
 
     @ManyToOne
